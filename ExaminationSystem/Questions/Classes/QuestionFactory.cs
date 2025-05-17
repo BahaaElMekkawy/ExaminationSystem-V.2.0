@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExaminationSystem.Answers.Classes;
-using ExaminationSystem.Answers.Interfaces;
+﻿using ExaminationSystem.Answers.Classes;
 using ExaminationSystem.Questions.Interfaces;
 
 namespace ExaminationSystem.Questions.Classes
@@ -17,7 +11,6 @@ namespace ExaminationSystem.Questions.Classes
             var answers = AnswerInputHelper.GetTrueOrFalseAnswers();
             var mark = GetQuestionMarkFromUseer();
             return new TrueOrFalseQuestion(body, answers, mark);
-
         }
 
         public static IQuestion CreateChooseOne()
@@ -26,7 +19,6 @@ namespace ExaminationSystem.Questions.Classes
             var answers = AnswerInputHelper.GetChooseOneAnswers();
             var mark = GetQuestionMarkFromUseer();
             return new ChooseOneQuestion(body, answers, mark);
-    
         }
         public static IQuestion ChooseMultipleQuestion()
         {
@@ -39,7 +31,6 @@ namespace ExaminationSystem.Questions.Classes
         public static IQuestion ChooseMultipleQuestion(string body, AnswerList answers, int mark)
         {
             return new ChooseMultipleQuestion(body, answers, mark);
-    
         }
 
         public static IQuestion CreateTrueOrFalse(string body, AnswerList answers, int mark)
