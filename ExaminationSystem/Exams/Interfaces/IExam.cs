@@ -15,8 +15,6 @@ namespace ExaminationSystem.Exams.Interfaces
 
         public int NumberOfQuestions { get; set; }
 
-        public Dictionary<IQuestion, List<int>> QuestionAnswerMap { get; set; }
-
         public Subject Subject { get; set; }
 
         public void Show();

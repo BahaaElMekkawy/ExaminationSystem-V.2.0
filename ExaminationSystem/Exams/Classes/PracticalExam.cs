@@ -10,51 +10,58 @@ namespace ExaminationSystem.Exams.Classes
 {
     public class PracticalExam : Exam
     {
-        readonly QuestionList questions;
-        HashSet<int> askedQuestions = new HashSet<int>();
-        int askedQuestionsCount = 0;
-        Random random = new Random();
-        public PracticalExam(QuestionList _questions)
+        Dictionary<IQuestion, List<int>> CorrectAnswers { get; set; }
+        public PracticalExam(QuestionList questions, int numberOfQuestions, int time)
         {
-            Console.WriteLine("Enter The Number of Question of the Exam");
-            NumberOfQuestions = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter The Time of the Exam");
-            Time = int.Parse(Console.ReadLine());
-            questions = _questions;
-            QuestionAnswerMap = new Dictionary<IQuestion, List<int>>();
-          
+            Questions = questions;
+            NumberOfQuestions = numberOfQuestions;
+            Time = time;
+            CorrectAnswers = new Dictionary<IQuestion, List<int>>();
+            AskedQuestions = new HashSet<int>();
+            random = new Random();
+
         }
+       
         public override void Show()
         {
-            for (int i = 0; i < NumberOfQuestions; i++)
+            int QuestionNumber = 1;
+
+            while (AskedQuestions.Count < NumberOfQuestions)
             {
                 Console.Clear();
-                Console.WriteLine($"Practical Exam {NumberOfQuestions} Questions Time: {Time} Min");
-                Console.Clear();
-                while (askedQuestionsCount <= NumberOfQuestions)
-                {
-                    int randomIndex = random.Next(0, questions.Count-1);
-                    if (!askedQuestions.Contains(randomIndex))
-                    {
-                        askedQuestionsCount++;
-                        Console.Clear();
-                        Console.WriteLine($"Question {i + 1}");
-                        askedQuestions.Add(randomIndex);
-                        questions[randomIndex].Display();
-                        Console.WriteLine("Enter the Answer");
-                        var answer = int.Parse(Console.ReadLine());
-                        var correctAnswersIds = questions[randomIndex].Answers.Where(a => a.IsCorrect == true).Select(a => a.Id).ToList();
-                        QuestionAnswerMap.Add(questions[randomIndex],  correctAnswersIds );
-                        break;
-                    }
-                }
-                Console.Clear();
-                Console.WriteLine("The Questions With Answers");
-                foreach (var question in QuestionAnswerMap)
-                {
-                    Console.WriteLine(question.Key);
-                    Console.WriteLine($"Correct Answer Id : {question.Value[0]}");
-                }
+                Console.WriteLine($"Practical Exam ({NumberOfQuestions} Questions) - Time: {Time} Min\n");
+
+                int randomIndex = random.Next(0, Questions.Count);
+                if (AskedQuestions.Contains(randomIndex))
+                    continue;
+
+                AskedQuestions.Add(randomIndex);
+                var question = Questions[randomIndex];
+
+                Console.WriteLine($"Question {QuestionNumber++}:\n");
+                question.Display();
+
+                Console.Write("Enter your answer: ");
+                int userAnswerId = int.Parse(Console.ReadLine());
+
+                var correctAnswersIds = Questions[randomIndex].Answers.Where(a => a.IsCorrect == true).Select(a => a.Id).ToList();
+                CorrectAnswers[question] = correctAnswersIds;
+
+                Console.WriteLine("Press any key for next question...");
+                Console.ReadKey();
+            }
+            ShowCorrectAnswers();
+        }
+
+        public void ShowCorrectAnswers()
+        {
+            Console.Clear();
+            Console.WriteLine("The Questions With Answers:");
+            foreach (var question in CorrectAnswers)
+            {
+                Console.WriteLine(question.Key);
+                Console.WriteLine($"Correct Answer Ids: {string.Join(',',question.Value)}\n");
+                Console.WriteLine("**********************************");
             }
         }
     }

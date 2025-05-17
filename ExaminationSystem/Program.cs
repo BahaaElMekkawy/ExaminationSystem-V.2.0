@@ -11,28 +11,11 @@ namespace ExaminationSystem
         static void Main(string[] args)
         {
 
-            //questions.AddQuestion(QuestionFactory.CreateChooseOne());
-            //questions.AddQuestion(QuestionFactory.CreateTrueOrFalse());
-
-
-            //foreach (var questionn in questions)
-            //{
-            //    questionn.Display();
-            //    Console.WriteLine("\n");
-            //    Console.WriteLine("Enter The Correct Answer Id.");
-            //    int correctanswer1 = int.Parse(Console.ReadLine());
-            //    var answer = questionn.CheckAnswer(correctanswer1);
-            //    Console.WriteLine(answer);
-            //}
-
-
-
-
 
 
             var questions = SeedingData.GenerateQuestions();
 
-            var exam = new PracticalExam(questions);
+            var exam = new FinalExam(questions,2,20);
 
             exam.Show();
 
