@@ -23,14 +23,14 @@ namespace ExaminationSystem.Questions.Classes
             }
             Console.WriteLine("\n");
         }
-        public virtual bool CheckAnswer(int answerId)
+        public virtual bool CheckAnswer(IEnumerable<int> answerIds)
         {
-            var answer = Answers.FirstOrDefault(x => x.Id == answerId);
-            if (answer != null)
-            {
-                return answer.IsCorrect;
-            }
-            return false;
+            var userAnswers = new HashSet<int>(answerIds);
+            var correctAnswers = new HashSet<int>(
+                Answers.Where(a => a.IsCorrect).Select(a => a.Id)
+            );
+
+            return userAnswers.SetEquals(correctAnswers);
         }
         public override string ToString()
         {

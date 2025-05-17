@@ -42,11 +42,14 @@ namespace ExaminationSystem.Exams.Classes
                 question.Display();
 
                 Console.Write("Enter your answer: ");
-                int userAnswerId = int.Parse(Console.ReadLine());
+                var input = Console.ReadLine();
+                var userAnswerIds = input
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(id => int.Parse(id.Trim()))
+                .ToHashSet();
+                var isCorrect = question.CheckAnswer(userAnswerIds);
 
-                var correctAnswersIds = Questions[randomIndex].Answers.Where(a => a.IsCorrect == true).Select(a => a.Id).ToList();
-                CorrectAnswers[question] = correctAnswersIds;
-
+                CorrectAnswers[question] = userAnswerIds.ToList();
                 Console.WriteLine("Press any key for next question...");
                 Console.ReadKey();
             }

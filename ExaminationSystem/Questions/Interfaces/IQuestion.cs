@@ -14,7 +14,7 @@ namespace ExaminationSystem.Questions.Interfaces
         public string Header { get; set; }
         public AnswerList Answers { get; set; } 
         public void Display();
-        public bool CheckAnswer(int answerId);
+        public bool CheckAnswer(IEnumerable<int> answerIds);
 
 
     }

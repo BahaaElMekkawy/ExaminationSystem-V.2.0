@@ -11,25 +11,26 @@ namespace ExaminationSystem
         static void Main(string[] args)
         {
 
-
-
             var questions = SeedingData.GenerateQuestions();
 
-            var exam = new FinalExam(questions,2,20);
-
-            exam.Show();
-
-
-            //foreach (var question in questions)
-            //{
-            //    Console.Clear();
-            //    question.Display();
-            //    Console.ReadLine();
-            //}
+            var practicalExam = new PracticalExam(questions, 5, 20);
+            var finalExam = new PracticalExam(questions, 5, 20);
 
 
-
-
+            Console.WriteLine("Enter Which Exam U Want To Start 1|Practical 2|Final");
+            var input = int.Parse(Console.ReadLine());
+            if (input == 1)
+            {
+                practicalExam.Show();
+            }
+            else if (input == 2)
+            {
+                finalExam.Show();
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input");
+            }
 
 
         }
