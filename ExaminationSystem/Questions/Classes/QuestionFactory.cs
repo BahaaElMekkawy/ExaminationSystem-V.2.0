@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ExaminationSystem.Answers.Classes;
+using ExaminationSystem.Answers.Interfaces;
+using ExaminationSystem.Questions.Interfaces;
+
+namespace ExaminationSystem.Questions.Classes
+{
+    public static class QuestionFactory
+    {
+        public static IQuestion CreateTrueOrFalse()
+        {
+            var body = GetQuestionBodyFromUseer();
+            var answers = AnswerInputHelper.GetTrueOrFalseAnswers();
+            var mark = GetQuestionMarkFromUseer();
+            return new TrueOrFalseQuestion(body, answers, mark);
+
+        }
+
+        public static IQuestion CreateChooseOne()
+        {
+            var body = GetQuestionBodyFromUseer();
+            var answers = AnswerInputHelper.GetChooseOneAnswers();
+            var mark = GetQuestionMarkFromUseer();
+            return new ChooseOneQuestion(body, answers, mark);
+    
+        }
+
+        public static IQuestion CreateChooseAll(string body, AnswerList answers, int mark)
+        {
+            return new ChooseMultipleQuestion(body, answers, mark);
+    
+        }
+
+        public static IQuestion CreateTrueOrFalse(string body, AnswerList answers, int mark)
+        {
+            return new TrueOrFalseQuestion(body, answers, mark);
+        }
+
+        public static IQuestion CreateChooseOne(string body, AnswerList answers, int mark)
+        {
+            return new ChooseOneQuestion(body, answers, mark);
+        }
+
+ 
+        public static string GetQuestionBodyFromUseer()
+        {
+            Console.WriteLine("Enter The Question Body.");
+            return Console.ReadLine();
+        }
+        public static int GetQuestionMarkFromUseer()
+        {
+            Console.WriteLine("Enter The Question Mark.");
+            return int.Parse(Console.ReadLine());
+        }
+    }
+
+}

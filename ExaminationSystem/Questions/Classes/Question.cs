@@ -1,4 +1,5 @@
-﻿using ExaminationSystem.Answers.Classes;
+﻿using System.Text;
+using ExaminationSystem.Answers.Classes;
 using ExaminationSystem.Answers.Interfaces;
 using ExaminationSystem.Questions.Interfaces;
 
@@ -22,6 +23,28 @@ namespace ExaminationSystem.Questions.Classes
             }
             Console.WriteLine("\n");
         }
-        
+        public virtual bool CheckAnswer(int answerId)
+        {
+            var answer = Answers.FirstOrDefault(x => x.Id == answerId);
+            if (answer != null)
+            {
+                return answer.IsCorrect;
+            }
+            return false;
+        }
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"{Header}.\t[{Mark} Marks]");
+            sb.AppendLine($"{Body} :");
+
+            foreach (var answer in Answers)
+            {
+                sb.AppendLine($"{answer.Id}. {answer.Text}");
+            }
+
+            return sb.ToString();
+        }
     }
 }

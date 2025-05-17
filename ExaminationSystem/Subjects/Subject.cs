@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExaminationSystem.Answers.Interfaces
+namespace ExaminationSystem.Subjects
 {
-    public interface IAnswer
+    public class Subject
     {
         public int Id { get; set; }
-        public string Text { get; set; }
-        public bool IsCorrect { get; set; }
-       
+        public string Name { get; set; }
     }
 }

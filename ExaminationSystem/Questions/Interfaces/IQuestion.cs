@@ -12,9 +12,10 @@ namespace ExaminationSystem.Questions.Interfaces
         public int Mark { get; set; }
         public string Body { get; set; }
         public string Header { get; set; }
-
         public AnswerList Answers { get; set; } 
         public void Display();
+        public bool CheckAnswer(int answerId);
+
 
     }
 }

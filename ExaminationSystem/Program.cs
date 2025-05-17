@@ -1,5 +1,6 @@
 ﻿using ExaminationSystem.Answers.Classes;
 using ExaminationSystem.Answers.Interfaces;
+using ExaminationSystem.Exams.Classes;
 using ExaminationSystem.Questions.Classes;
 using ExaminationSystem.Questions.Interfaces;
 
@@ -9,45 +10,39 @@ namespace ExaminationSystem
     {
         static void Main(string[] args)
         {
-            IQuestion question = new TrueOrFalseQuestion() 
-            {
-                Mark = 5,
-                Body = "Is the sky blue?",
-                Header = "True Or False Question",
-            };
-            question.Answers.AddAnswer(new ChooseOneAnswer { Id = 1, Text = "True", IsCorrect = true });
-            question.Answers.AddAnswer(new ChooseOneAnswer { Id = 2, Text = "False", IsCorrect = false });
-            IQuestion question2 = new ChooseOneQuestion()
-            {
-                Mark = 5,
-                Body = "What Is The Sky Color?",
-                Header = "Choose One Answer",
-                Answers = new AnswerList()
-                {
-                    new ChooseOneAnswer() { Id =1 ,Text = "Red", IsCorrect = false },
-                    new ChooseOneAnswer() { Id =2 ,Text = "Green", IsCorrect = false },
-                    new ChooseOneAnswer() { Id =3 ,Text = "Blue", IsCorrect = true },
-                    new ChooseOneAnswer() { Id =4 ,Text = "White", IsCorrect = false }
-                }
-            };
 
-            question.Display();
-            question2.Display();
+            //questions.AddQuestion(QuestionFactory.CreateChooseOne());
+            //questions.AddQuestion(QuestionFactory.CreateTrueOrFalse());
+
+
+            //foreach (var questionn in questions)
+            //{
+            //    questionn.Display();
+            //    Console.WriteLine("\n");
+            //    Console.WriteLine("Enter The Correct Answer Id.");
+            //    int correctanswer1 = int.Parse(Console.ReadLine());
+            //    var answer = questionn.CheckAnswer(correctanswer1);
+            //    Console.WriteLine(answer);
+            //}
 
 
 
 
 
 
+            var questions = SeedingData.GenerateQuestions();
+
+            var exam = new PracticalExam(questions);
+
+            exam.Show();
 
 
-
-
-
-
-
-
-
+            //foreach (var question in questions)
+            //{
+            //    Console.Clear();
+            //    question.Display();
+            //    Console.ReadLine();
+            //}
 
 
 
@@ -57,3 +52,4 @@ namespace ExaminationSystem
         }
     }
 }
+

@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExaminationSystem.Answers.Classes;
 
 namespace ExaminationSystem.Questions.Classes
 {
-    class TrueOrFalseQuestion : Question
+    public class TrueOrFalseQuestion : Question
     {
-    
+        public TrueOrFalseQuestion(string body, AnswerList answers, int mark )
+        {
+            Body = body;
+            Mark = mark;
+            Header = "True Or False Question";
+            Answers = answers;
+            
+        }
     }
 }
