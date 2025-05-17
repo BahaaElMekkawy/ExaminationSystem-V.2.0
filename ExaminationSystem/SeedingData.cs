@@ -63,6 +63,15 @@ namespace ExaminationSystem
             coAnswers4.AddAnswer(new Answer { Id = 4, Text = "5", IsCorrect = false });
 
             questions.Add(QuestionFactory.CreateChooseOne("3 + 2 + 1?", coAnswers4, 6));
+            
+            // Question 2: Choose Multiple
+            var coAnswers5 = new AnswerList();
+            coAnswers5.AddAnswer(new Answer { Id = 1, Text = "SRP", IsCorrect = true });
+            coAnswers5.AddAnswer(new Answer { Id = 2, Text = "OCP", IsCorrect = true });
+            coAnswers5.AddAnswer(new Answer { Id = 3, Text = "Encapsulation", IsCorrect = false });
+            coAnswers5.AddAnswer(new Answer { Id = 4, Text = "DIP", IsCorrect = true });
+
+            questions.Add(QuestionFactory.ChooseMultipleQuestion("What of these is consider a SOLID principle", coAnswers5, 10));
 
 
 

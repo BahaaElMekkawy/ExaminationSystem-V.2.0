@@ -43,13 +43,15 @@ namespace ExaminationSystem.Exams.Classes
                 question.Display();
 
                 Console.Write("Enter your answer: ");
-                int userAnswerId = int.Parse(Console.ReadLine());
-                var isCorrect = question.CheckAnswer(userAnswerId);
+                var input = Console.ReadLine();
+                var userAnswerIds = input
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(id => int.Parse(id.Trim())).ToHashSet();
+                var isCorrect = question.CheckAnswer(userAnswerIds);
                 if (isCorrect == true)
                     UserMarks += question.Mark;
 
-
-                UserAnswers[question] = new List<int>() { userAnswerId };
+                UserAnswers[question] =  userAnswerIds.ToList() ;
 
                 Console.WriteLine("Press any key for next question...");
                 Console.ReadKey();
@@ -57,7 +59,7 @@ namespace ExaminationSystem.Exams.Classes
             ShowResult();
         }
 
-        public void ShowResult() 
+        public void ShowResult()
         {
             Console.Clear();
             Console.WriteLine($"Total Marks: {TotalMarks}");

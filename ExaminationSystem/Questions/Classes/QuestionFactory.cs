@@ -28,8 +28,15 @@ namespace ExaminationSystem.Questions.Classes
             return new ChooseOneQuestion(body, answers, mark);
     
         }
+        public static IQuestion ChooseMultipleQuestion()
+        {
+            var body = GetQuestionBodyFromUseer();
+            var answers = AnswerInputHelper.GetChooseMultipleAnswers();
+            var mark = GetQuestionMarkFromUseer();
+            return new ChooseMultipleQuestion(body, answers, mark);
+        }
 
-        public static IQuestion CreateChooseAll(string body, AnswerList answers, int mark)
+        public static IQuestion ChooseMultipleQuestion(string body, AnswerList answers, int mark)
         {
             return new ChooseMultipleQuestion(body, answers, mark);
     
