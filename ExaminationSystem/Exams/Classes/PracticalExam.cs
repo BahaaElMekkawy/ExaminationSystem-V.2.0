@@ -11,11 +11,12 @@ namespace ExaminationSystem.Exams.Classes
     public class PracticalExam : Exam
     {
         Dictionary<IQuestion, List<int>> CorrectAnswers { get; set; }
-        public PracticalExam(QuestionList questions, int numberOfQuestions, int time)
+        public PracticalExam(QuestionList questions, int numberOfQuestions, int subid,int time)
         {
             Questions = questions;
             NumberOfQuestions = numberOfQuestions;
             Time = time;
+            SubjectId = subid;
             CorrectAnswers = new Dictionary<IQuestion, List<int>>();
             AskedQuestions = new HashSet<int>();
             random = new Random();
