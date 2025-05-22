@@ -9,13 +9,18 @@ namespace ExaminationSystem.Questions.Classes
 {
     public class TrueOrFalseQuestion : Question
     {
-        public TrueOrFalseQuestion(string body, AnswerList answers, int mark )
+        public TrueOrFalseQuestion()
+        {
+            Header = "True Or False Question";
+        }
+        public TrueOrFalseQuestion(string body, AnswerList answers, int subid,int mark )
         {
             Body = body;
             Mark = mark;
             Header = "True Or False Question";
             Answers = answers;
-            
+            SubjectId = subid;
+
         }
     }
 }

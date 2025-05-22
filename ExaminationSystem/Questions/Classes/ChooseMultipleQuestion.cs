@@ -9,11 +9,16 @@ namespace ExaminationSystem.Questions.Classes
 {
     public class ChooseMultipleQuestion : Question
     {
-        public ChooseMultipleQuestion(string body, AnswerList answerList, int mark)
+        public ChooseMultipleQuestion() : base()
+        {
+            Header = "Choose Multiple Question";
+        }
+        public ChooseMultipleQuestion(string body, AnswerList answerList, int subid, int mark)
         {
             Body = body;
             Answers = answerList;
             Mark = mark;
+            SubjectId = subid;
             Header = "Choose Multiple Question";
         }
     }

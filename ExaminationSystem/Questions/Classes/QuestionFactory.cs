@@ -1,57 +1,84 @@
 ﻿using ExaminationSystem.Answers.Classes;
 using ExaminationSystem.Questions.Interfaces;
+using ExaminationSystem.Users.Classes;
+using ExaminationSystem.Users.Interfaces;
 
 namespace ExaminationSystem.Questions.Classes
 {
     public static class QuestionFactory
     {
+        private static IUser currentUser;
+        public static void SetCurrentUser(User user)
+        {
+            currentUser = user;
+        }
+        private static void CheckAdmin()
+        {
+            if (currentUser == null || currentUser.Role != "Admin") {
+                Console.WriteLine("Only Admins Can Create Questions.");
+                throw new Exception("Only Admins Can Create Questions.");
+        } }
         public static IQuestion CreateTrueOrFalse()
         {
-            var body = GetQuestionBodyFromUseer();
+            CheckAdmin();
+            var body = GetQuestionBodyFromAdmin();
             var answers = AnswerInputHelper.GetTrueOrFalseAnswers();
-            var mark = GetQuestionMarkFromUseer();
-            return new TrueOrFalseQuestion(body, answers, mark);
+            var mark = GetQuestionMarkFromAdmin();
+            var subid = GetQuestionSubjectIdFromAdmin();
+            return new TrueOrFalseQuestion(body, answers, subid, mark);
         }
 
         public static IQuestion CreateChooseOne()
         {
-            var body = GetQuestionBodyFromUseer();
+            CheckAdmin();
+            var body = GetQuestionBodyFromAdmin();
             var answers = AnswerInputHelper.GetChooseOneAnswers();
-            var mark = GetQuestionMarkFromUseer();
-            return new ChooseOneQuestion(body, answers, mark);
+            var mark = GetQuestionMarkFromAdmin();
+            var subid = GetQuestionSubjectIdFromAdmin();
+            return new ChooseOneQuestion(body, answers, subid, mark);
         }
         public static IQuestion CreateChooseMultipleQuestion()
         {
-            var body = GetQuestionBodyFromUseer();
+            CheckAdmin();
+            var body = GetQuestionBodyFromAdmin();
             var answers = AnswerInputHelper.GetChooseMultipleAnswers();
-            var mark = GetQuestionMarkFromUseer();
-            return new ChooseMultipleQuestion(body, answers, mark);
+            var mark = GetQuestionMarkFromAdmin();
+            var subid = GetQuestionSubjectIdFromAdmin();
+            return new ChooseMultipleQuestion(body, answers, subid, mark);
         }
 
-        public static IQuestion CreateChooseMultipleQuestion(string body, AnswerList answers, int mark)
+        public static IQuestion CreateChooseMultipleQuestion(string body, AnswerList answers, int subid,int mark)
         {
-            return new ChooseMultipleQuestion(body, answers, mark);
+            CheckAdmin();
+            return new ChooseMultipleQuestion(body, answers, subid, mark);
         }
 
-        public static IQuestion CreateTrueOrFalse(string body, AnswerList answers, int mark)
+        public static IQuestion CreateTrueOrFalse(string body, AnswerList answers, int subid,int mark)
         {
-            return new TrueOrFalseQuestion(body, answers, mark);
+            CheckAdmin();
+            return new TrueOrFalseQuestion(body, answers, subid, mark);
         }
 
-        public static IQuestion CreateChooseOne(string body, AnswerList answers, int mark)
+        public static IQuestion CreateChooseOne(string body, AnswerList answers, int subid,int mark)
         {
-            return new ChooseOneQuestion(body, answers, mark);
+            CheckAdmin();
+            return new ChooseOneQuestion(body, answers, subid, mark);
         }
 
  
-        public static string GetQuestionBodyFromUseer()
+        public static string GetQuestionBodyFromAdmin()
         {
             Console.WriteLine("Enter The Question Body.");
             return Console.ReadLine();
         }
-        public static int GetQuestionMarkFromUseer()
+        public static int GetQuestionMarkFromAdmin()
         {
             Console.WriteLine("Enter The Question Mark.");
+            return int.Parse(Console.ReadLine());
+        }
+        public static int GetQuestionSubjectIdFromAdmin()
+        {
+            Console.WriteLine("Enter The Question Subject ID.");
             return int.Parse(Console.ReadLine());
         }
     }
