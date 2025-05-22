@@ -13,11 +13,12 @@ namespace ExaminationSystem.Exams.Classes
         Dictionary<IQuestion, List<int>> UserAnswers { get; set; }
         int TotalMarks { get; set; }
         int UserMarks { get; set; }
-        public FinalExam(QuestionList questions, int numberOfQuestions, int time)
+        public FinalExam(QuestionList questions, int numberOfQuestions,int subid, int time)
         {
             Questions = questions;
             NumberOfQuestions = numberOfQuestions;
             Time = time;
+            SubjectId = subid;
             UserAnswers = new Dictionary<IQuestion, List<int>>();
             AskedQuestions = new HashSet<int>();
             random = new Random();
@@ -30,7 +31,7 @@ namespace ExaminationSystem.Exams.Classes
             while (AskedQuestions.Count < NumberOfQuestions)
             {
                 Console.Clear();
-                Console.WriteLine($"Practical Exam ({NumberOfQuestions} Questions) - Time: {Time} Min\n");
+                Console.WriteLine($"Final Exam ({NumberOfQuestions} Questions) - Time: {Time} Min\n");
 
                 int randomIndex = random.Next(0, Questions.Count);
                 if (AskedQuestions.Contains(randomIndex))

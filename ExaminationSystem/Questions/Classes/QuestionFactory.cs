@@ -20,7 +20,7 @@ namespace ExaminationSystem.Questions.Classes
             var mark = GetQuestionMarkFromUseer();
             return new ChooseOneQuestion(body, answers, mark);
         }
-        public static IQuestion ChooseMultipleQuestion()
+        public static IQuestion CreateChooseMultipleQuestion()
         {
             var body = GetQuestionBodyFromUseer();
             var answers = AnswerInputHelper.GetChooseMultipleAnswers();
@@ -28,7 +28,7 @@ namespace ExaminationSystem.Questions.Classes
             return new ChooseMultipleQuestion(body, answers, mark);
         }
 
-        public static IQuestion ChooseMultipleQuestion(string body, AnswerList answers, int mark)
+        public static IQuestion CreateChooseMultipleQuestion(string body, AnswerList answers, int mark)
         {
             return new ChooseMultipleQuestion(body, answers, mark);
         }

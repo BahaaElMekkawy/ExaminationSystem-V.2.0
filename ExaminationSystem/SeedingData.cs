@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExaminationSystem.Answers.Classes;
+﻿using ExaminationSystem.Answers.Classes;
 using ExaminationSystem.Questions.Classes;
-using ExaminationSystem.Questions.Interfaces;
 
 namespace ExaminationSystem
 {
@@ -42,27 +36,27 @@ namespace ExaminationSystem
 
             // Question 1: True or False
             var tfAnswers1 = new AnswerList();
-            tfAnswers1.AddAnswer(new Answer { Id = 1, Text = "True", IsCorrect = true });
-            tfAnswers1.AddAnswer(new Answer { Id = 2, Text = "False", IsCorrect = false });
+            tfAnswers1.AddAnswer(new Answer { Id = 1, Text = "True", IsCorrect = false });
+            tfAnswers1.AddAnswer(new Answer { Id = 2, Text = "False", IsCorrect = true });
 
-            questions.Add(QuestionFactory.CreateTrueOrFalse("The sky is blue.", tfAnswers1, 5));
+            questions.Add(QuestionFactory.CreateTrueOrFalse("The sky is red.", tfAnswers1, 5));
 
 
             // Question 1: True or False
             var tfAnswers2 = new AnswerList();
-            tfAnswers2.AddAnswer(new Answer { Id = 1, Text = "True", IsCorrect = true });
-            tfAnswers2.AddAnswer(new Answer { Id = 2, Text = "False", IsCorrect = false });
+            tfAnswers2.AddAnswer(new Answer { Id = 1, Text = "True", IsCorrect = false });
+            tfAnswers2.AddAnswer(new Answer { Id = 2, Text = "False", IsCorrect = true });
 
-            questions.Add(QuestionFactory.CreateTrueOrFalse("The sky is blue.", tfAnswers2, 5));
+            questions.Add(QuestionFactory.CreateTrueOrFalse("The sky is green.", tfAnswers2, 5));
 
             // Question 2: Choose One
             var coAnswers4 = new AnswerList();
             coAnswers4.AddAnswer(new Answer { Id = 1, Text = "2", IsCorrect = false });
-            coAnswers4.AddAnswer(new Answer { Id = 2, Text = "3", IsCorrect = false });
-            coAnswers4.AddAnswer(new Answer { Id = 3, Text = "6", IsCorrect = true });
+            coAnswers4.AddAnswer(new Answer { Id = 2, Text = "-3", IsCorrect = true });
+            coAnswers4.AddAnswer(new Answer { Id = 3, Text = "6", IsCorrect = false });
             coAnswers4.AddAnswer(new Answer { Id = 4, Text = "5", IsCorrect = false });
 
-            questions.Add(QuestionFactory.CreateChooseOne("3 + 2 + 1?", coAnswers4, 6));
+            questions.Add(QuestionFactory.CreateChooseOne("2 -5?", coAnswers4, 6));
             
             // Question 2: Choose Multiple
             var coAnswers5 = new AnswerList();
@@ -71,9 +65,7 @@ namespace ExaminationSystem
             coAnswers5.AddAnswer(new Answer { Id = 3, Text = "Encapsulation", IsCorrect = false });
             coAnswers5.AddAnswer(new Answer { Id = 4, Text = "DIP", IsCorrect = true });
 
-            questions.Add(QuestionFactory.ChooseMultipleQuestion("What of these is consider a SOLID principle", coAnswers5, 10));
-
-
+            questions.Add(QuestionFactory.CreateChooseMultipleQuestion("What of these is consider a SOLID principle", coAnswers5, 10));
 
             return questions;
         }

@@ -15,7 +15,7 @@ namespace ExaminationSystem.Exams.Interfaces
 
         public int NumberOfQuestions { get; set; }
 
-        public Subject Subject { get; set; }
+        public int SubjectId { get; set; }
 
         public void Show();
 
