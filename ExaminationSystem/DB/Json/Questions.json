@@ -1,0 +1,76 @@
+[
+  {
+    "Mark": 5,
+    "Body": "What is the Color of the Sky ",
+    "Header": "Choose One Question",
+    "SubjectId": 100,
+    "Answers": [
+      {
+        "Id": 1,
+        "Text": "Blue",
+        "IsCorrect": true
+      },
+      {
+        "Id": 2,
+        "Text": "Red",
+        "IsCorrect": false
+      },
+      {
+        "Id": 3,
+        "Text": "Black",
+        "IsCorrect": false
+      },
+      {
+        "Id": 4,
+        "Text": "Green",
+        "IsCorrect": false
+      }
+    ]
+  },
+  {
+    "Mark": 10,
+    "Body": "Where is Egypt",
+    "Header": "Choose Multiple Question",
+    "SubjectId": 100,
+    "Answers": [
+      {
+        "Id": 1,
+        "Text": "Africa ",
+        "IsCorrect": true
+      },
+      {
+        "Id": 2,
+        "Text": "MiddleEast",
+        "IsCorrect": true
+      },
+      {
+        "Id": 3,
+        "Text": "Asia",
+        "IsCorrect": false
+      },
+      {
+        "Id": 4,
+        "Text": "Austraila",
+        "IsCorrect": false
+      }
+    ]
+  },
+  {
+    "Mark": 3,
+    "Body": "Is ht Sky Blue",
+    "Header": "True Or False Question",
+    "SubjectId": 100,
+    "Answers": [
+      {
+        "Id": 1,
+        "Text": "True",
+        "IsCorrect": true
+      },
+      {
+        "Id": 2,
+        "Text": "False",
+        "IsCorrect": false
+      }
+    ]
+  }
+]

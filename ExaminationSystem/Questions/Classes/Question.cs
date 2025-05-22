@@ -11,6 +11,8 @@ namespace ExaminationSystem.Questions.Classes
         public string Body { get; set; }
         public string Header { get; set; }
 
+        public int SubjectId { get; set; }
+
         public AnswerList Answers { get; set; } = new AnswerList();
 
 

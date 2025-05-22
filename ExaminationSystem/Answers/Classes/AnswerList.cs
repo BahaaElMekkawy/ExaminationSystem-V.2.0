@@ -17,5 +17,16 @@ namespace ExaminationSystem.Answers.Classes
         {
             this.Remove(answer);
         }
+        public AnswerList()
+        {
+
+        }
+        public AnswerList(IEnumerable<Answer> answers) : base()
+        {
+            foreach (var answer in answers)
+            {
+                this.Add(answer);
+            }
+        }
     }
 }
