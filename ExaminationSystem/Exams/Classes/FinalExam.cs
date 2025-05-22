@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExaminationSystem.DB.DTOs;
+using ExaminationSystem.DB.Repos;
 using ExaminationSystem.Questions.Classes;
 using ExaminationSystem.Questions.Interfaces;
+using ExaminationSystem.Users.Classes;
 
 namespace ExaminationSystem.Exams.Classes
 {
@@ -24,7 +27,7 @@ namespace ExaminationSystem.Exams.Classes
             random = new Random();
         }
 
-        public override void Show()
+        public override void Show(Student student)
         {
             int QuestionNumber = 1;
 
@@ -57,15 +60,27 @@ namespace ExaminationSystem.Exams.Classes
                 Console.WriteLine("Press any key for next question...");
                 Console.ReadKey();
             }
-            ShowResult();
+            ShowResult(student);
         }
 
-        public void ShowResult()
+        public void ShowResult(Student student)
         {
             Console.Clear();
             Console.WriteLine($"Total Marks: {TotalMarks}");
             Console.WriteLine($"Your Marks: {UserMarks}");
-            Console.WriteLine($"Your Score: {UserMarks / TotalMarks * 100}%");
+            Console.WriteLine($"Your Score: {(UserMarks / (double)TotalMarks * 100):F2}%");
+
+            var result = new StudentResultDto
+            {
+                StudentId = student.Id,
+                StudentName = student.Name,
+                TotalMarks = TotalMarks,
+                UserMarks = UserMarks,
+                SubjectId = SubjectId
+            };
+
+            var repo = new ResultsRepository();
+            repo.SaveResult(result);
         }
     }
 }

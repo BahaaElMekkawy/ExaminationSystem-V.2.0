@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExaminationSystem.Answers.Classes;
 using ExaminationSystem.Questions.Classes;
+using ExaminationSystem.Questions.Interfaces;
 
 namespace ExaminationSystem.DB.DTOs
 {
@@ -20,7 +21,7 @@ namespace ExaminationSystem.DB.DTOs
 
         public List<AnswerDto> Answers { get; set; } = new List<AnswerDto>();
 
-        public static QuestionDto ToDto(Question question)
+        public static QuestionDto ToDto(IQuestion question)
         {
             return new QuestionDto
             {

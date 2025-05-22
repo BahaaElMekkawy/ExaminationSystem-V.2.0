@@ -65,7 +65,22 @@ namespace ExaminationSystem.Questions.Classes
             return new ChooseOneQuestion(body, answers, subid, mark);
         }
 
- 
+        public static IQuestion CreateQuestionByType(int questionType)
+        {
+            switch (questionType)
+            {
+                case 1:
+                    return QuestionFactory.CreateTrueOrFalse();
+                case 2:
+                    return QuestionFactory.CreateChooseOne();
+                case 3:
+                    return QuestionFactory.CreateChooseMultipleQuestion();
+                default:
+                    throw new ArgumentException($"Unknown question type: {questionType}");
+            }
+        }
+
+
         public static string GetQuestionBodyFromAdmin()
         {
             Console.WriteLine("Enter The Question Body.");

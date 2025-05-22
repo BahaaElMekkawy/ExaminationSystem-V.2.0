@@ -3,6 +3,7 @@ using ExaminationSystem.Exams.Interfaces;
 using ExaminationSystem.Questions.Classes;
 using ExaminationSystem.Questions.Interfaces;
 using ExaminationSystem.Subjects;
+using ExaminationSystem.Users.Classes;
 
 namespace ExaminationSystem.Exams.Classes
 {
@@ -19,7 +20,7 @@ namespace ExaminationSystem.Exams.Classes
         protected int askedQuestionsCount = 0;
 
         protected Random random ;
-        public abstract void Show();
+        public abstract void Show(Student student);
     }
 
 }

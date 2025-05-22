@@ -7,13 +7,13 @@ using ExaminationSystem.Questions.Interfaces;
 
 namespace ExaminationSystem.Questions.Classes
 {
-    public class QuestionList : List<Question>
+    public class QuestionList : List<IQuestion>
     {
-        public void AddQuestion(Question question)
+        public void AddQuestion(IQuestion question)
         {
             this.Add(question);
         }
-        public void RemoveQuestion(Question question)
+        public void RemoveQuestion(IQuestion question)
         {
             this.Remove(question);
         }

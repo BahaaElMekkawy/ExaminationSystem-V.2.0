@@ -1,0 +1,26 @@
+[
+  {
+    "StudentId": 5,
+    "StudentName": "Ahmed",
+    "SubjectId": 0,
+    "TotalMarks": 24,
+    "UserMarks": 0,
+    "ScorePercentage": 0
+  },
+  {
+    "StudentId": 5,
+    "StudentName": "Ahmed",
+    "SubjectId": 100,
+    "TotalMarks": 23,
+    "UserMarks": 0,
+    "ScorePercentage": 0
+  },
+  {
+    "StudentId": 5,
+    "StudentName": "Ahmed",
+    "SubjectId": 100,
+    "TotalMarks": 24,
+    "UserMarks": 20,
+    "ScorePercentage": 83.33333333333334
+  }
+]

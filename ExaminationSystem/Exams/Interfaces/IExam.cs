@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExaminationSystem.Questions.Interfaces;
 using ExaminationSystem.Subjects;
+using ExaminationSystem.Users.Classes;
 
 namespace ExaminationSystem.Exams.Interfaces
 {
@@ -17,7 +18,7 @@ namespace ExaminationSystem.Exams.Interfaces
 
         public int SubjectId { get; set; }
 
-        public void Show();
+        public void Show(Student student);
 
 
     }

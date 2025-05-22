@@ -19,11 +19,13 @@ namespace ExaminationSystem.ExamService.Classes
                 Console.WriteLine($"Student {student.Name} is taking the exam for subject {subject.Name}.");
                 Console.WriteLine("Press Any Key to Start The Exam.");
                 Console.ReadLine();
-                exam.Show();
+                exam.Show(student);
+                return;
             }
             else
             {
                 Console.WriteLine($"Student {student.Name} is not enrolled in the subject {subject.Name}.");
+                return;
             }
         }
 

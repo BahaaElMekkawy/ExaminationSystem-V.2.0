@@ -4,6 +4,8 @@ using ExaminationSystem.Users.Classes;
 using ExaminationSystem.ExamService.Classes;
 using ExaminationSystem.Questions.Classes;
 using ExaminationSystem.DB.Repos;
+using ExaminationSystem.Questions.Interfaces;
+using ExaminationSystem.DB.DTOs;
 
 
 namespace ExaminationSystem
@@ -12,81 +14,71 @@ namespace ExaminationSystem
     {
         static void Main(string[] args)
         {
-            //Admin admin = new Admin("Admin", 1);
-            //QuestionList questions1 = new QuestionList();
+            Admin admin = new Admin("Admin", 1);
             //QuestionFactory.SetCurrentUser(admin);
-            //var q1 = QuestionFactory.CreateChooseOne();
-            //Console.Clear();
-            //var q2 = QuestionFactory.CreateChooseMultipleQuestion();
-            //Console.Clear();
-            //var q3 = QuestionFactory.CreateTrueOrFalse();
-            //Console.Clear();
-            //questions1.Add(q1);
-            //questions1.Add(q2);
-            //questions1.Add(q3);
 
-            QuestionsRepository questionRepository = new QuestionsRepository();
+            //QuestionList questions1 = new QuestionList();
 
-            //questionRepository.SaveQuestions(questions1);
+            //bool addMore = true;
+            //while (addMore)
+            //{
+            //    Console.WriteLine("Enter Type Of Questions U Want To Add.");
+            //    Console.WriteLine("1|True Or False    2|ChooseOne   3|ChooseMultiple");
+            //    int questionType = 0;
+            //    int.TryParse(Console.ReadLine(), out questionType);
+            //    IQuestion adminQuestion = QuestionFactory.CreateQuestionByType(questionType);
+            //    questions1.AddQuestion(adminQuestion);
+            //    Console.Clear();
+            //    Console.WriteLine("Want To Add More Questions");
+            //    Console.WriteLine("1|Yes 2|No");
+            //    int addMoreInput = 0;
+            //    int.TryParse(Console.ReadLine(), out addMoreInput);
+            //    if (addMoreInput != 1)
+            //        addMore = false;
+            //}
 
-            var questions2 = questionRepository.LoadQuestions();
-
-            foreach (var question in questions2)
-            {
-                Console.WriteLine(question);
-            }
-
-
-
-
-
-
-
-
-
-
+            //List<QuestionDto> questionDtos = new List<QuestionDto>();
             //foreach (var question in questions1)
             //{
-            //    question.Display();
+            //    var q1 = QuestionDto.ToDto(question);
+            //    questionDtos.Add(q1);
             //}
 
-            //var questions = SeedingData.GenerateQuestions();
+            QuestionsRepository questionsRepository = new QuestionsRepository();
 
-            //var practicalExam = new PracticalExam(questions, 5, 100, 20);
-            //var finalExam = new FinalExam(questions, 5,100, 20);
+            //questionsRepository.SaveQuestionDtos(questionDtos);
 
-            //Student student1 = new Student("Ahmed", 5);
-            //Student student2 = new Student("Sara", 6);
+            //**************************  the end of add questions **************************
 
-            //Subject subject1 = new Subject("Math", 100);
-            //Subject subject2 = new Subject("Chemistry", 200);
+            var mathQuestionsDtos = questionsRepository.LoadQuestions(200);
 
-            //student1.EnrollInSubject(100);
-            //student1.EnrollInSubject(200);
+            var chemistryQuestionsDtos = questionsRepository.LoadQuestions(100);
 
-            //ExamServices examService = new ExamServices();
+            var mathQuestions = new QuestionList();
 
-            //Admin admin = new Admin("Admin", 1);
-            //admin.StartExam(subject1);
+            foreach (var item in mathQuestionsDtos)
+            {
+                var q1 = QuestionDto.FromDto(item);
+                mathQuestions.AddQuestion(q1);
+            }
 
-            //examService.TakeExam(finalExam, student1 , subject1);
+            Student student1 = new Student("Ahmed", 5);
+            Student student2 = new Student("Sara", 6);
 
+            Subject subject1 = new Subject("Math", 100);
+            Subject subject2 = new Subject("Chemistry", 200);
 
+            admin.StartExam(subject1);
 
+            var practicalExam = new FinalExam(mathQuestions, 5, 100, 20);
+            var finalExam = new FinalExam(mathQuestions, 5, 100, 20);
 
-
-
-
-
-
-
-
-
-
+            student1.EnrollInSubject(200);
+            student1.EnrollInSubject(100);
 
 
-
-
+            ExamServices examService = new ExamServices();
+            examService.TakeExam(practicalExam, student1, subject1);
 
 
 
@@ -95,21 +87,25 @@ namespace ExaminationSystem
 
 
 
-            //Console.WriteLine("Enter Which Exam U Want To Start 1|Practical 2|Final");
-            //var input = int.Parse(Console.ReadLine());
-            //if (input == 1)
-            //{
-            //    practicalExam.Show();
-            //}
-            //else if (input == 2)
-            //{
-            //    finalExam.Show();
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Invalid Input");
-            //}
-            //Console.ReadLine();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

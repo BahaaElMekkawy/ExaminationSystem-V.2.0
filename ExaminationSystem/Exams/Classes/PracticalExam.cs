@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExaminationSystem.Questions.Classes;
 using ExaminationSystem.Questions.Interfaces;
+using ExaminationSystem.Users.Classes;
 
 namespace ExaminationSystem.Exams.Classes
 {
@@ -23,7 +24,7 @@ namespace ExaminationSystem.Exams.Classes
 
         }
        
-        public override void Show()
+        public override void Show(Student student) // no sense will handle the parameter later 
         {
             int QuestionNumber = 1;
 
